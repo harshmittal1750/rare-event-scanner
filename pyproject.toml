@@ -1,0 +1,43 @@
+[project]
+name = "rare-event-scanner"
+version = "0.1.0"
+description = "Scans cross-asset timeseries for statistically rare events and publishes them to insight-coin-ai for tweeting."
+readme = "README.md"
+authors = [
+    { name = "Harsh Mittal", email = "harshmittal.dev@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "apscheduler>=3.11.2",
+    "ccxt>=4.5.49",
+    "duckdb>=1.5.2",
+    "httpx>=0.28.1",
+    "loguru>=0.7.3",
+    "polars>=1.40.0",
+    "pyarrow>=23.0.1",
+    "pydantic>=2.13.2",
+    "pydantic-settings>=2.13.1",
+    "python-dateutil>=2.9.0.post0",
+    "typer>=0.24.1",
+    "yfinance>=1.3.0",
+]
+
+[project.scripts]
+scanner = "rare_event_scanner.cli:app"
+
+[build-system]
+requires = ["uv_build>=0.10.9,<0.11.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.3",
+    "ruff>=0.15.11",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "UP", "B", "SIM", "RUF"]
